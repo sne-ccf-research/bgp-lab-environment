@@ -30,6 +30,18 @@ services:
     networks:
        r2_r3:
         ipv4_address: "192.19.0.13"
+       r3_r4:
+        ipv4_address: "162.19.0.13"
+    expose:
+       - "179"
+
+  router4:
+    privileged: true
+    container_name: r4
+    build: ./r4
+    networks:
+       r3_r4:
+        ipv4_address: "162.19.0.14"
     expose:
        - "179"
 
@@ -55,6 +67,12 @@ networks:
     ipam:
      config:
        - subnet: 192.19.0.0/16
+
+  r3_r4:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 162.19.0.0/16
 
   r666_r2:
     driver: bridge
