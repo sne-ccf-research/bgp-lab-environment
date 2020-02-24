@@ -1,0 +1,65 @@
+version: "3.7"
+services:
+  router1:
+    privileged: true
+    container_name: r1
+    build: ./r1
+    networks:
+       r1_r2:
+        ipv4_address: "172.19.0.11"
+    expose:
+       - "179"
+  router2:
+    privileged: true
+    container_name: r2
+    build: ./r2
+    networks:
+       r1_r2:
+        ipv4_address: "172.19.0.12"       
+       r666_r2:
+        ipv4_address: "182.19.0.12"
+       r2_r3:
+        ipv4_address: "192.19.0.12"
+    expose:
+       - "179"
+
+  router3:
+    privileged: true
+    container_name: r3
+    build: ./r3
+    networks:
+       r2_r3:
+        ipv4_address: "192.19.0.13"
+    expose:
+       - "179"
+
+  router666:
+    privileged: true
+    container_name: r666
+    build: ./r666
+    networks:
+       r666_r2:
+        ipv4_address: "182.19.0.16"
+    expose:
+       - "179"
+
+networks:
+  r1_r2:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.19.0.0/16
+
+  r2_r3:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.19.0.0/16
+
+  r666_r2:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 182.19.0.0/16
+
+
