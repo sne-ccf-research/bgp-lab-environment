@@ -12,3 +12,7 @@ ENV KRILL_CLI_MY_CA=CCF-CA
 ENV KRILL_USE_TA=true
 ENV KRILL_REPO_ENABLED=true
 
+COPY krillsetup.sh /usr/local/bin/krillsetup.sh
+
+CMD ["/bin/bash", "/usr/local/bin/krillsetup.sh"]
+
