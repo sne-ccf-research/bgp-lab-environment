@@ -54,6 +54,39 @@ services:
         ipv4_address: "182.19.0.16"
     expose:
        - "179"
+  
+  krill:
+   privileged: true
+   container_name: krill
+   build: ./krill
+   volumes:
+      - /tmp/krill/data/:/var/krill/data/
+   networks:
+        r1_r2:
+         ipv4_address: "172.19.0.100"
+   expose:
+      - "3000"
+   ports:
+    - "127.0.0.1:3000:3000"
+ 
+ 
+  routinator:
+   privileged: true
+   user: root
+   container_name: routinator
+   build: ./routinator
+   volumes:
+      - /tmp/krill/data:/var/krill/data
+   networks:
+        r1_r2:
+         ipv4_address: "172.19.0.101"
+   expose:
+      - "3323"
+      - "9556"
+   ports:
+    - "127.0.0.1:3323:3323"
+    - "127.0.0.1:9556:9556"
+  
 
 networks:
   r1_r2:
@@ -79,5 +112,4 @@ networks:
     ipam:
      config:
        - subnet: 182.19.0.0/16
-
 

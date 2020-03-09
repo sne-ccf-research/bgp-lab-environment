@@ -54,25 +54,25 @@ if [ "$1" == "krill" ]; then
     # different arguments to docker run there may still be some lines in the
     # config file that we added before which are now no longer correct. Remove
     # any lines that we added.
-#    if ! sed -i "/.\\+${MAGIC}/d" ${KRILL_CONF} 2>/dev/null; then
-#        log_warning "Cannot write to ${KRILL_CONF}. You can ignore this warning if you mounted your own config file over ${KRILL_CONF}."
-#    else
+    if ! sed -i "/.\\+${MAGIC}/d" ${KRILL_CONF} 2>/dev/null; then
+        log_warning "Cannot write to ${KRILL_CONF}. You can ignore this warning if you mounted your own config file over ${KRILL_CONF}."
+    else
         # Append to the default Krill config file to direct clients of the
         # RSYNC and RRDP endpoints to the correct FQDN. We cannot know know the
         # FQDN which clients use to reach us so the operator must inform this
         # script via a "-e KRILL_FQDN=some.domain.name" argument to
         # "docker run".
-        #cat << EOF >> ${KRILL_CONF}
-#rsync_base  = "rsync://${KRILL_FQDN}/repo/" ${MAGIC}
-#service_uri = "https://${KRILL_FQDN}/" ${MAGIC}
-#log_level   = "${KRILL_LOG_LEVEL}" ${MAGIC}
-#use_ta      = ${KRILL_USE_TA} ${MAGIC}
-#EOF
+        cat << EOF >> ${KRILL_CONF}
+rsync_base  = "rsync://172.19.0.100:3001/repo/" ${MAGIC}
+service_uri = "https://${KRILL_FQDN}/" ${MAGIC}
+log_level   = "${KRILL_LOG_LEVEL}" ${MAGIC}
+use_ta      = ${KRILL_USE_TA} ${MAGIC}
+EOF
 
-#        log_info "Dumping ${KRILL_CONF} config file"
-#        cat ${KRILL_CONF}
-#        log_info "End of dump"
-#    fi
+        log_info "Dumping ${KRILL_CONF} config file"
+        cat ${KRILL_CONF}
+        log_info "End of dump"
+    fi
 fi
 
 # Launch the command supplied either by the default CMD (krill) in the
@@ -80,5 +80,4 @@ fi
 # to ensure krill runs as PID 1 as required by Docker for proper signal
 # handling. This also allows this Docker image to be used to run krill_admin
 # instead of krill.
-
 exec "$@"
