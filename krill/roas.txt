@@ -1,2 +1,4 @@
+# TODO update this roas to be same as the allocations to be used
+# TODO also consider making it possible to pass the list at build time (lower priority)
 A: 10.0.0.0/24 => 64496
 A: 10.1.0.0/16-20 => 64496   # Add prefix with max length
