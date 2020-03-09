@@ -20,8 +20,8 @@ COPY ./rsyncd.conf /etc/
 COPY ./entrypoint.sh /opt/entrypoint.sh
 
 EXPOSE 3000
+EXPOSE 3001
 
-#RUN rsync --daemon
 
 
 
