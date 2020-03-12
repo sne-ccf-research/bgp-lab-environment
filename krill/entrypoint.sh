@@ -75,6 +75,8 @@ if [ "$1" == "krill" ]; then
 #    fi
 fi
 
+#exec /var/krill/bootstrap.sh
+
 # Launch the command supplied either by the default CMD (krill) in the
 # Dockerfile or that given by the operator when invoking Docker run. Use exec
 # to ensure krill runs as PID 1 as required by Docker for proper signal
@@ -82,3 +84,5 @@ fi
 # instead of krill.
 
 exec "$@"
+
+#exec "/var/krill/bootstrap.sh"

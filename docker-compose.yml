@@ -54,6 +54,41 @@ services:
         ipv4_address: "182.19.0.16"
     expose:
        - "179"
+<<<<<<< Updated upstream
+=======
+  
+  krill:
+   privileged: true
+   container_name: krill
+   build: ./krill
+   volumes:
+      - /tmp/krill/data/:/var/krill/data/ #TODO this might not be needed
+   networks:
+        r1_r2:
+         ipv4_address: "172.19.0.100"
+   expose:
+      - "3000"
+   ports:
+    - "127.0.0.1:3000:3000"
+# Make routinator build only after krill 
+  routinator:
+   privileged: true
+   user: root
+   container_name: routinator
+   build: ./routinator
+   volumes:
+      - /tmp/krill/data:/var/krill/data #TODO this might not be needed
+   networks:
+        r1_r2:
+         ipv4_address: "172.19.0.101"
+   expose:
+      - "3323"
+      - "9556"
+   ports:
+    - "127.0.0.1:3323:3323"
+    - "127.0.0.1:9556:9556"
+  
+>>>>>>> Stashed changes
 
 networks:
   r1_r2:
