@@ -72,11 +72,11 @@ services:
 # Make routinator build only after krill 
   routinator:
    privileged: true
-   user: root
    container_name: routinator
    build: ./routinator
    volumes:
-      - /tmp/krill/data:/var/krill/data #TODO this might not be needed
+      - routinator-tals:/home/routinator/.rpki-cache/tals
+      - /tmp/krill/data:/var/krill/data
    networks:
         r1_r2:
          ipv4_address: "172.19.0.101"
@@ -87,6 +87,8 @@ services:
     - "127.0.0.1:3323:3323"
     - "127.0.0.1:9556:9556"
   
+volumes:
+  routinator-tals:
 
 networks:
   r1_r2:

@@ -2,8 +2,8 @@
 
 #TODO move this to entrypoint
 
-TAL_DIR=/$(whoami)/.rpki-cache/tals
-TA_CER_DIR=/var/krill/data/repo/rsync/current/ta/
+TAL_DIR=/home/$(whoami)/.rpki-cache/tals
+TA_CER_DIR=/var/krill/data/repo/rsync/current/ta
 RSYNC_URL="rsync://172.19.0.100:3001/ta/ta.cer"
 
 # remove existing tal
