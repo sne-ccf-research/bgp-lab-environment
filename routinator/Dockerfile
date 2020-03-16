@@ -6,4 +6,6 @@ FROM nlnetlabs/routinator:v0.6.4
 #RUN mkdir -p /root/.rpki-cache/repository
 #RUN mkdir -p /root/.rpki-cache/tals
 
+RUN touch /home/routinator/log
+COPY ./.routinator.conf /home/routinator/.routinator.conf
 COPY ./init.sh /
