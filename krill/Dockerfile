@@ -13,11 +13,13 @@ ENV KRILL_CLI_SERVER=https://localhost:3000/
 ENV KRILL_CLI_MY_CA=CCF-CA
 ENV KRILL_USE_TA=true
 ENV KRILL_REPO_ENABLED=true
+ENV KRILL_LOG_LEVEL=debug
 
 COPY ./bootstrap.sh /var/krill/
 COPY ./roas.txt  /var/krill/
 COPY ./rsyncd.conf /etc/
 COPY ./entrypoint.sh /opt/entrypoint.sh
+
 
 EXPOSE 3000
 EXPOSE 3001
