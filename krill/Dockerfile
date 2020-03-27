@@ -19,7 +19,7 @@ COPY ./bootstrap.sh /var/krill/
 COPY ./roas.txt  /var/krill/
 COPY ./rsyncd.conf /etc/
 COPY ./entrypoint.sh /opt/entrypoint.sh
-
+COPY ./krill.conf /var/krill/data/
 
 EXPOSE 3000
 EXPOSE 3001
