@@ -1,4 +1,4 @@
-FROM        frrouting/frr:latest
+FROM        frrouting/frr:frr-7.3
 
 RUN     apk update \
 			--repository http://dl-cdn.alpinelinux.org/alpine/v3.10/main \
